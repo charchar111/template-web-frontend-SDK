@@ -7,10 +7,11 @@
     //   { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
     // ],
 
+    // **NOTE 아래는 ts-loader 없이 단독으로 tsx, jsx코드를 변환할 때 사용
     // react의 JSX코드를 js로변환.
-    // ts-loader 없이 단독으로 tsx, jsx코드를 변환할 때 사용
     // runtime:automatic은 React17이상에서 적용되는 기능으로 React를 import하지 않고도 JSX를 사용
     // ["@babel/preset-react", { "runtime": "automatic" }]
+    // "@babel/preset-typescript" // TypeScript 코드를 JavaScript로 변환하여 타입 정보를 제거
   ],
   "plugins": ["@babel/plugin-transform-runtime"] // 번들링된 코드에서 자주 사용되는 헬퍼 함수를 직접 작성하는 대신 babel-runtime 패키지에서 가져온다.
 }
