@@ -1,0 +1,12 @@
+{
+  "presets": [
+    "@babel/preset-env", // 최신 js 코드를 구버전 js 코드로 변환
+    // 변환 타겟을 최신형 브라우저에 맞출 때에는 이 설정 사용
+    // [
+    //   "@babel/preset-env",
+    //   { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
+    // ],
+    ["@babel/preset-react", { "runtime": "automatic" }] // reactJSX코드를 변환함. runtime:automatic은 React17이상에서 적용되는 기능으로 React를 import하지 않고도 JSX를 사용할 수 있습니다.
+  ],
+  "plugins": ["@babel/transform-runtime"] // 번들링된 코드에서 자주 사용되는 헬퍼 함수를 직접 작성하는 대신 babel-runtime 패키지에서 가져온다.
+}
