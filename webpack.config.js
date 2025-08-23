@@ -6,7 +6,7 @@ module.exports = () => {
   const isDevelopment = process.env.NODE_ENV !== "production";
 
   return {
-    entry: "./src/index.jsx", // 애플리케이션의 진입점. 번들링 시 가장 먼저 시작하는 파일
+    entry: "./src/index.tsx", // 애플리케이션의 진입점. 번들링 시 가장 먼저 시작하는 파일
 
     // 번들링 결과물
     output: {
@@ -18,17 +18,11 @@ module.exports = () => {
 
     // 모듈의 경로나 파일 타입을 해석하는 방식을 결정
     // import나 require로 모듈 삽입 시, 경로를 정의하는 방식
+    // 모듈의 경로나 파일 타입을 해석하는 방식을 결정
+    // import나 require로 모듈 삽입 시, 경로를 정의하는 방식
     resolve: {
-      extensions: [".jsx", ".js"], // 확장자가 생략된 경우 가져올 모듈의 파일 확장자 지정
+      extensions: [".tsx", ".ts", ".jsx", ".js"], // 확장자가 생략된 경우 가져올 모듈의 파일 확장자 지정
       modules: ["src", "node_modules"], // 모듈을 찾을 때 참조할 디렉토리의 목록을 정의. 자동으로 절대경로로 src와 node_modules부터 사용가능함
-
-      // 특정 경로에 대한 절대경로를 별칭으로 설정
-      // ex: import publicImage1 from @public/image/publicImage1.png;
-      alias: {
-        "@src": path.resolve(__dirname, "src"),
-        "@asset": path.resolve(__dirname, "src", "asset"),
-        "@public": path.resolve(__dirname, "public"),
-      },
     },
     // 개발용 로컬 서버
     devServer: {
@@ -43,15 +37,20 @@ module.exports = () => {
     // eval-source-map: 번들 파일 내에 소스맵이 포함. 디버깅 시 원본 소스에 가까운 코드를 제공하나 무거우므로 성능이 느림 => 개발에 적합
     // source-map: 디버깅 시 번들 파일과 별도의 소스 맵을 제공함. eval-source-map보다 원본이 변형되었으나 성능이 빠름 => 배포에 적합
     devtool: isDevelopment ? "eval-source-map" : "source-map",
-
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/, //.js, .jsx 확장자에 대해
+          test: /\.(ts|tsx|js|jsx)$/, // .ts, .tsx, .js, .jsx 확장자에 대해
           exclude: /node_modules/,
           use: [
             {
               loader: "babel-loader", // JavaScript 변환을 위한 Babel 로더
+            },
+            {
+              loader: "ts-loader", // TypeScript 로더
+              options: {
+                transpileOnly: false, // 트랜스파일 이전에 타입 체킹을 수행 // 상황에 따라 유동적 설정
+              },
             },
           ],
         },

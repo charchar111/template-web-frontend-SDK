@@ -5,23 +5,29 @@
   "main": "index.js",
   "scripts": {
     "prod": "NODE_ENV=production webpack serve",
-    "dev": "NODE_ENV=development webpack serve",
+    "dev": "NODE_ENV=development webpack serve --no-cache",
+    "build:dev": "NODE_ENV=production webpack",
     "build": "NODE_ENV=production webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.28.3",
-    "@babel/plugin-transform-runtime": "^7.28.3",
-    "@babel/preset-env": "^7.28.3",
-    "@babel/preset-react": "^7.27.1",
-    "babel-loader": "^10.0.0",
+    "@babel/runtime": "^7.28.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "babel-loader": "^10.0.0",
+    "@types/react": "^19.1.11",
+    "@types/react-dom": "^19.1.7",
     "html-webpack-plugin": "^5.6.4",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.9.2",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
