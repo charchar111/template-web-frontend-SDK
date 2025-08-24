@@ -7,7 +7,7 @@
     "target": "esnext", // 컴파일 후의 자바스크립트 버전 = 최신 자바스크립트. 바벨 로더에게 폴리필을 맡김
     "module": "esnext", // 모듈 시스템 = 최신 모듈 시스템
     "jsx": "react-jsx", // react JSX구문을 변환.  react17버전 이상의 기능 지원
-    "strict": false, // 타입 검사에서 체크하는 에러의 범주를 더 넓게 설정함.
+    "strict": true, // 타입 검사에서 체크하는 에러의 범주를 더 넓게 설정함.
     "moduleResolution": "node", // 모듈 해석 방식
     "esModuleInterop": true, // esmodule과 commonjs 모듈을 함께 사용할 수 있도록 허용. 특히 commonJS 모듈을 esModule로 가져올 때 유용
     "skipLibCheck": true, //라이브러리 파일의 타입 검사를 건너뜀. 컴파일 시간을 단축함
@@ -17,7 +17,9 @@
     "resolveJsonModule": true, // JSON 파일을 모듈처럼 가져올 수 있음.
     // Disallow features that require cross-file information for emit.
     "isolatedModules": true,
-    "declaration": true // d.ts 파일 생성 여부(기본 값 false)
+    "declaration": true, // d.ts 파일 생성 여부(기본 값 false)
+    "declarationMap": false, // d.ts 파일에 대해 원본 소스 코드로 점프할 수 있는 맵 파일 생성 여부(기본 값 false)
+    "sourceMap": true // js 파일에 대한 소스 맵 파일 생성 여부(기본 값 false)
   },
 
   "include": ["src"] // 검사를 하는 대상
