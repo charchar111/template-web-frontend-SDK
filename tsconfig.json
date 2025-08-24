@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
+    // 컴파일된 파일이 저장될 디렉토리 기본 값은 ./
+    // 기본 값은 추천하지 않음! 개발 소스 내에 타입이랑 js가 추가되어서 오염됨
+    // 중요: 이 폴더가 webpack 설정파일의 output.path와 동일해야 번들 파일 내에 d.ts 파일이 포함됨
     "outDir": "./dist",
     "target": "esnext", // 컴파일 후의 자바스크립트 버전 = 최신 자바스크립트. 바벨 로더에게 폴리필을 맡김
     "module": "esnext", // 모듈 시스템 = 최신 모듈 시스템
     "jsx": "react-jsx", // react JSX구문을 변환.  react17버전 이상의 기능 지원
-    "strict": false, // 엄격한 타입 검사
+    "strict": false, // 타입 검사에서 체크하는 에러의 범주를 더 넓게 설정함.
     "moduleResolution": "node", // 모듈 해석 방식
     "esModuleInterop": true, // esmodule과 commonjs 모듈을 함께 사용할 수 있도록 허용. 특히 commonJS 모듈을 esModule로 가져올 때 유용
     "skipLibCheck": true, //라이브러리 파일의 타입 검사를 건너뜀. 컴파일 시간을 단축함
     "forceConsistentCasingInFileNames": true, // 파일 이름의 대소문자를 일관되게 유지. 서로 다른 운영 체제 간의 호환성을 개선
-    "baseUrl": ".",
+    "baseUrl": ".", // 비절대 경로 모듈을 해석할 때 기준이 되는 디렉토리
     "allowJs": true, // js파일을 모듈로 추가할 수 있도록 타입 체킹을 허가한다. 자바스크립트와 타입스크립트를 혼용 시 유용
     "resolveJsonModule": true, // JSON 파일을 모듈처럼 가져올 수 있음.
     // Disallow features that require cross-file information for emit.
     "isolatedModules": true,
-    "declaration": true
+    "declaration": true // d.ts 파일 생성 여부(기본 값 false)
   },
 
   "include": ["src"] // 검사를 하는 대상
