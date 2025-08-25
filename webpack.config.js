@@ -1,10 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = () => {
-  console.log("NODE_ENV:", process.env.NODE_ENV);
   const isDevelopment = process.env.NODE_ENV !== "production";
-
+  console.log(
+    "NODE_ENV:",
+    process.env.NODE_ENV,
+    "isDevelopment",
+    isDevelopment
+  );
   return {
     entry: "./src/index.tsx", // 애플리케이션의 진입점. 번들링 시 가장 먼저 시작하는 파일
 
@@ -23,6 +28,14 @@ module.exports = () => {
     resolve: {
       extensions: [".tsx", ".ts", ".jsx", ".js"], // 확장자가 생략된 경우 가져올 모듈의 파일 확장자 지정
       modules: ["src", "node_modules"], // 모듈을 찾을 때 참조할 디렉토리의 목록을 정의. 자동으로 절대경로로 src와 node_modules부터 사용가능함
+
+      // 경로 별칭 설정/
+      // tsconfig.json의 paths와 수동으로 일치시켜 주세요
+      alias: {
+        "@src": path.resolve(__dirname, "src"),
+        "@asset": path.resolve(__dirname, "src", "asset"),
+        "@public": path.resolve(__dirname, "public"),
+      },
     },
     // 개발용 로컬 서버
     devServer: {
@@ -51,8 +64,7 @@ module.exports = () => {
               options: {
                 // 타입 컴파일링을 수행할 것인지, 아니면 빠르게 트랜스파일만 할 것인지 결정.
                 // true로 설정하면 타입 검사를 건너뜀. 대신, 컴파일 산출물(타입) 생성 불가
-                // transpileOnly: true,
-                transpileOnly: false,
+                transpileOnly: true,
               },
             },
           ],
@@ -65,6 +77,16 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: "public/index.html",
       }),
+
+      // 웹팩 개발 서버에서 타입스크립트 타입 검사를 별도의 프로세스에서 수행
+      // hmr 속도 향상 & 타입 에러 확인
+      ...(isDevelopment
+        ? [
+            new ForkTsCheckerWebpackPlugin({
+              typescript: { configFile: "tsconfig.json" },
+            }),
+          ]
+        : []),
     ],
   };
 };

@@ -29,3 +29,20 @@ SDK(라이브러리, 개발자 문서) 번들링 설정 테스트
 
 몇 가지 의존성은 라이브러리 번들링 테스트를 위한 모듈에 필요해서 임의로 추가했습니다.
 실제로는 필요 없습니다.
+
+# 차후 추가할 것
+
+## 경로 별칭 사용 시 (path alias)
+
+tsconfig.json이랑 webpack.config.js를 같이 수정해야 하고 둘은 일치해야 함
+
+나중에 `tsconfig-paths-webpack-plugin` 을 쓰면
+경로가 자동 일치되긴 하니, 이걸 추가해도 좋음
+
+## 공개 서브 모듈 관리
+
+deep import를 못하도록 제한해야 나중에 라이브러리 사용자가
+내부 import를 했다가 우리가 리팩토링하며 깨지는 일이 안생김
+
+지금은 pacakage.json 내 export 설정으로 제한 하지만 ,
+나중에 dts-bundle-generator으로 더 강하게 제한
