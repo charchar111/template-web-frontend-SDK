@@ -6,8 +6,10 @@
   "scripts": {
     "prod": "NODE_ENV=production webpack serve",
     "dev": "NODE_ENV=development webpack serve --no-cache",
-    "build": "NODE_ENV=production webpack --no-cache",
-    "types": "tsc --emitDeclarationOnly --declaration --noEmitOnError",
+    "build": "npm run build:type-check && npm run build:bundle && npm run build:type-emit",
+    "build:bundle": "NODE_ENV=production webpack --no-cache",
+    "build:type-check": "tsc --noEmit",
+    "build:type-emit": "tsc --emitDeclarationOnly --declaration --noEmitOnError",
     "prod:test": "http-server ./dist -p 5173 -c-1 --cors"
   },
   "keywords": [],
