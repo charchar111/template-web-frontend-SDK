@@ -6,8 +6,8 @@
     // 기본 값은 추천하지 않음! 개발 소스 내에 타입이랑 js가 추가되어서 오염됨
     // 중요: 이 폴더가 webpack 설정파일의 output.path와 동일해야 번들 파일 내에 d.ts 파일이 포함됨
     "outDir": "./dist",
-    "target": "esnext", // 컴파일 후의 자바스크립트 버전 = 최신 자바스크립트. 바벨 로더에게 폴리필을 맡김
-    "module": "esnext", // 모듈 시스템 = 최신 모듈 시스템
+    "target": "esnext", // 컴파일 산출물의 자바스크립트 버전 = 최신 자바스크립트. 바벨 로더에게 폴리필을 맡김
+    "module": "esnext", // 컴파일 산출물의 모듈 시스템 버전 = 최신 모듈 시스템. 웹팩에서 트리셰이킹을 위함
     "jsx": "react-jsx", // react JSX구문을 변환.  react17버전 이상의 기능 지원
     "strict": true, // 타입 검사에서 체크하는 에러의 범주를 더 넓게 설정함.
     "moduleResolution": "node", // 모듈 해석 방식

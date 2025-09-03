@@ -23,8 +23,6 @@ module.exports = () => {
 
     // 모듈의 경로나 파일 타입을 해석하는 방식을 결정
     // import나 require로 모듈 삽입 시, 경로를 정의하는 방식
-    // 모듈의 경로나 파일 타입을 해석하는 방식을 결정
-    // import나 require로 모듈 삽입 시, 경로를 정의하는 방식
     resolve: {
       extensions: [".tsx", ".ts", ".jsx", ".js"], // 확장자가 생략된 경우 가져올 모듈의 파일 확장자 지정
       modules: ["src", "node_modules"], // 모듈을 찾을 때 참조할 디렉토리의 목록을 정의. 자동으로 절대경로로 src와 node_modules부터 사용가능함
@@ -65,6 +63,11 @@ module.exports = () => {
                 // 타입 컴파일링을 수행할 것인지, 아니면 빠르게 트랜스파일만 할 것인지 결정.
                 // true로 설정하면 타입 검사를 건너뜀. 대신, 컴파일 산출물(타입) 생성 불가
                 transpileOnly: true,
+                // compilerOptions: {
+                //   emitDeclarationOnly: false,
+                //   declaration: true,
+                //   noEmitOnError: true,
+                // },
               },
             },
           ],

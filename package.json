@@ -3,10 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "prod": "NODE_ENV=production webpack serve",
     "dev": "NODE_ENV=development webpack serve --no-cache",
     "build": "npm run build:type-check && npm run build:bundle && npm run build:type-emit",
+    "build:lib": "npm run build:type-check && npm run build:bundleLib && npm run build:type-emit",
+    "build:bundleLib": "NODE_ENV=production webpack --no-cache --config webpack.lib.config.js",
     "build:bundle": "NODE_ENV=production webpack --no-cache",
     "build:type-check": "tsc --noEmit",
     "build:type-emit": "tsc --emitDeclarationOnly --declaration --noEmitOnError",
