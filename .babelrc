@@ -1,6 +1,16 @@
 {
   "presets": [
-    "@babel/preset-env" // 최신 js 코드를 구버전 js 코드로 변환
+    [
+      "@babel/preset-env", // 최신 js 코드를 구버전 js 코드로 변환
+      {
+        "targets": {
+          "browsers": ["last 2 versions", ">= 5% in KR", "not ie <= 11"]
+        },
+        "useBuiltIns": "usage",
+        "corejs": "3.37"
+      }
+    ]
+
     // 변환 타겟을 최신형 브라우저에 맞출 때에는 이 설정 사용
     // [
     //   "@babel/preset-env",
