@@ -47,7 +47,7 @@ module.exports = () => {
 
     // eval-source-map: 번들 파일 내에 소스맵이 포함. 디버깅 시 원본 소스에 가까운 코드를 제공하나 무거우므로 성능이 느림 => 개발에 적합
     // source-map: 디버깅 시 번들 파일과 별도의 소스 맵을 제공함. eval-source-map보다 원본이 변형되었으나 성능이 빠름 => 배포에 적합
-    devtool: isDevelopment ? "eval-source-map" : "source-map",
+    devtool: isDevelopment ? "eval-source-map" : undefined,
     module: {
       rules: [
         {

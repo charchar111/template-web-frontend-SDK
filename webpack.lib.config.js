@@ -1,5 +1,9 @@
-// webpack.lib.js
+// @ts-check
+
 const path = require("path");
+
+/** @typedef {import('webpack').Configuration} WebpackConfig */
+/** @typedef {{ NODE_ENV?: 'development'|'production'|'none', bundle?: 'esm'|'cjs'|'umd' }} Env */
 
 const externals = {
   react: "react",
@@ -9,7 +13,7 @@ const externals = {
 };
 
 // 공통 베이스
-const base = {
+const base = (_env, _argv, isProd) => ({
   entry: "./src/service/index.ts",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -27,23 +31,36 @@ const base = {
         exclude: /node_modules/,
         use: [
           { loader: "babel-loader" },
-          { loader: "ts-loader", options: { transpileOnly: true } },
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: false,
+              configFile: "tsconfig.build.json",
+            },
+          },
         ],
       },
     ],
   },
   externals,
   // ✅ 이름 보존을 위해 어떤 난독화/망글링도 하지 않음
+  /** @type {"production"} */
   mode: "production", // 배포 최적화(트리쉐이킹 등)는 유지
-  devtool: false, // 배포 시 소스맵 OFF
+  devtool: undefined, // 배포 시 소스맵 OFF
   optimization: {
     minimize: true, // ❗ Terser(내장) 비활성화 → 이름 그대로 유지
   },
-};
+});
 
-// ✅ ESM 번들
-const esm = {
-  ...base,
+/**
+ * ✅ ESM 번들
+ * @param {Env} _env
+ * @param {any} _argv
+ * @param {boolean} isProd
+ * @returns {WebpackConfig}
+ */
+const esm = (_env, _argv, isProd) => ({
+  ...base(_env, _argv, isProd),
   name: "esm",
   target: "web",
   experiments: { outputModule: true },
@@ -53,11 +70,17 @@ const esm = {
     library: { type: "module" },
     clean: true,
   },
-};
+});
 
-// ✅ CJS 번들
-const cjs = {
-  ...base,
+/**
+ * ✅ CJS 번들
+ * @param {Env} _env
+ * @param {any} _argv
+ * @param {boolean} isProd
+ * @returns {WebpackConfig}
+ */
+const cjs = (_env, _argv, isProd) => ({
+  ...base(_env, _argv, isProd),
   name: "cjs",
   target: "web",
   output: {
@@ -65,11 +88,17 @@ const cjs = {
     filename: "index.cjs.js",
     library: { type: "commonjs2" },
   },
-};
+});
 
-// ✅ UMD(Global) 번들 (브라우저 전역 window.mySDK로 노출)
-const umd = {
-  ...base,
+/**
+ * ✅ UMD(Global) 번들 (브라우저 전역 window.mySDK로 노출)
+ * @param {Env} _env
+ * @param {any} _argv
+ * @param {boolean} isProd
+ * @returns {WebpackConfig}
+ */
+const umd = (_env, _argv, isProd) => ({
+  ...base(_env, _argv, isProd),
   name: "umd",
   target: "web",
   output: {
@@ -83,6 +112,16 @@ const umd = {
     },
     // globalObject: "this", // node/browser 모두 안전
   },
-};
+});
 
-module.exports = [esm, cjs, umd];
+module.exports = (env = {}, argv = {}) => {
+  const envNode =
+    env.NODE_ENV || process.env.NODE_ENV || argv.mode || "production";
+  const isProd = envNode === "production";
+
+  return [
+    esm(env, argv, isProd),
+    cjs(env, argv, isProd),
+    umd(env, argv, isProd),
+  ];
+};
