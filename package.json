@@ -1,7 +1,7 @@
 {
-  "name": "dts",
+  "name": "template-web-frontend-sdk-webpack-typescript",
   "version": "1.0.0",
-  "description": "",
+  "description": "this is a template for web frontend sdk with webpack and typescript",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "unpkg": "./dist/index.umd.js",
@@ -17,7 +17,6 @@
     }
   },
   "scripts": {
-    "prod": "NODE_ENV=production webpack serve",
     "dev": "NODE_ENV=development webpack serve",
     "build": "NODE_ENV=production webpack --no-cache",
     "build:lib": "NODE_ENV=production webpack --no-cache --config webpack.lib.config.js && api-extractor run --local",
@@ -29,8 +28,7 @@
   "dependencies": {
     "@babel/runtime": "^7.28.3",
     "core-js": "3.37",
-    "html2canvas": "^1.4.1",
-    "ol": "^10.6.1",
+    "jspdf": "^3.0.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

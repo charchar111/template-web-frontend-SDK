@@ -161,20 +161,20 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "dts!",
+  "canonicalReference": "template-web-frontend-sdk-webpack-typescript!",
   "docComment": "",
-  "name": "dts",
+  "name": "template-web-frontend-sdk-webpack-typescript",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "dts!",
+      "canonicalReference": "template-web-frontend-sdk-webpack-typescript!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Class",
-          "canonicalReference": "dts!Api:class",
+          "canonicalReference": "template-web-frontend-sdk-webpack-typescript!Api:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -190,7 +190,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "dts!Api:constructor(1)",
+              "canonicalReference": "template-web-frontend-sdk-webpack-typescript!Api:constructor(1)",
               "docComment": "/**\n * Constructs a new instance of the `Api` class\n */\n",
               "excerptTokens": [
                 {
@@ -205,7 +205,7 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "dts!Api#toPrint:member(1)",
+              "canonicalReference": "template-web-frontend-sdk-webpack-typescript!Api#toPrint:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -261,7 +261,179 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "dts!PrintControl:class",
+          "canonicalReference": "template-web-frontend-sdk-webpack-typescript!DownloadControl:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class DownloadControl "
+            }
+          ],
+          "fileUrlPath": "dist/type-temp/model/DownloadControl.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "DownloadControl",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "template-web-frontend-sdk-webpack-typescript!DownloadControl:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `DownloadControl` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor();"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": []
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "template-web-frontend-sdk-webpack-typescript!DownloadControl#toPDF:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "toPDF(selector: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", fileName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "selector",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "fileName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "toPDF"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "template-web-frontend-sdk-webpack-typescript!DownloadControl#toPNG:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "toPNG(selector: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", fileName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "selector",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "fileName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "toPNG"
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "template-web-frontend-sdk-webpack-typescript!PrintControl:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -277,7 +449,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "dts!PrintControl:constructor(1)",
+              "canonicalReference": "template-web-frontend-sdk-webpack-typescript!PrintControl:constructor(1)",
               "docComment": "/**\n * Constructs a new instance of the `PrintControl` class\n */\n",
               "excerptTokens": [
                 {
@@ -292,7 +464,7 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "dts!PrintControl#toPrint:member(1)",
+              "canonicalReference": "template-web-frontend-sdk-webpack-typescript!PrintControl#toPrint:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
