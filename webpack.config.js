@@ -63,11 +63,7 @@ module.exports = () => {
                 // 타입 컴파일링을 수행할 것인지, 아니면 빠르게 트랜스파일만 할 것인지 결정.
                 // true로 설정하면 타입 검사를 건너뜀. 대신, 컴파일 산출물(타입) 생성 불가
                 transpileOnly: true,
-                // compilerOptions: {
-                //   emitDeclarationOnly: false,
-                //   declaration: true,
-                //   noEmitOnError: true,
-                // },
+                configFile: "tsconfig.json",
               },
             },
           ],
