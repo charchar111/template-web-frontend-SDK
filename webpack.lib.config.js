@@ -115,9 +115,8 @@ const umd = (_env, _argv, isProd) => ({
 });
 
 module.exports = (env = {}, argv = {}) => {
-  const envNode =
-    env.NODE_ENV || process.env.NODE_ENV || argv.mode || "production";
-  const isProd = envNode === "production";
+  console.log("argv", argv);
+  const isProd = argv.mode === "production";
 
   return [
     esm(env, argv, isProd),

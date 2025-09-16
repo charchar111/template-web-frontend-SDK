@@ -1,0 +1,16 @@
+{
+  "entryPoints": ["src/service"],
+  "entryPointStrategy": "expand",
+  "out": "docs/typedoc",
+  "cleanOutputDir": true,
+  "readme": "none",
+  "tsconfig": "./tsconfig.build.json",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": false,
+  "includeVersion": true,
+  "disableSources": false,
+  "categorizeByGroup": false,
+  "searchInComments": true,
+  "skipErrorChecking": true
+}

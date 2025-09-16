@@ -17,10 +17,14 @@
     }
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack serve",
-    "build": "NODE_ENV=production webpack --no-cache",
-    "build:lib": "NODE_ENV=production webpack --no-cache --config webpack.lib.config.js && api-extractor run --local",
-    "prod:test": "http-server ./dist -p 5173 -c-1 --cors"
+    "dev": "webpack serve --mode=development",
+    "build": "webpack --no-cache --config webpack.lib.config.js --mode=production && api-extractor run --local",
+    "prod:test:esm": "http-server ./test/esm -p 5173 -c-1 --cors ",
+    "prod:test:umd": "http-server ./test/umd -p 5173 -c-1 --cors ",
+    "prod:dist": "http-server ./dist -p 5174 -c-1 --cors",
+    "prod:all:esm": "concurrently \"npm run prod:test:esm\" \"npm run prod:dist\"",
+    "prod:all:umd": "concurrently \"npm run prod:test:umd\" \"npm run prod:dist\"",
+    "docs:typedoc": "typedoc --options typedoc.json"
   },
   "keywords": [],
   "author": "",
@@ -45,6 +49,7 @@
     "html-webpack-plugin": "^5.6.4",
     "http-server": "^14.1.1",
     "ts-loader": "^9.5.2",
+    "typedoc": "^0.28.13",
     "typescript": "^5.9.2",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
