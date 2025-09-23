@@ -17,7 +17,7 @@
 
   // 문서 추출용 파일 생성
   "docModel": {
-    "enabled": true,
+    "enabled": false,
     "apiJsonFilePath": "<projectFolder>/docs/api-extract/<unscopedPackageName>.api.json"
   },
 
