@@ -1,11 +1,5 @@
 import html2canvas from "html2canvas";
 
-/**
- * @description 특정 HTML 요소를 캡처하여 인쇄하는 기능을 제공합니다.
- * @example
- * ```typescript
- * import { PrintControl } from 'your-sdk';
- */
 export class PrintControl {
   constructor() {}
 

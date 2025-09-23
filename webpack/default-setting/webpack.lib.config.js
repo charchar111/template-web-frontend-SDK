@@ -5,6 +5,10 @@ const path = require("path");
 /** @typedef {import('webpack').Configuration} WebpackConfig */
 /** @typedef {{ NODE_ENV?: 'development'|'production'|'none', bundle?: 'esm'|'cjs'|'umd' }} Env */
 
+/**
+ * peerDependencies를 externals로 설정하여 번들에 포함하지 않음
+ * => 사용자가 직접 설치하도록 유도
+ */
 const externals = {
   react: "react",
   "react-dom": "react-dom",
@@ -12,7 +16,14 @@ const externals = {
   // 필요한 peer들 추가
 };
 
-// 공통 베이스
+//
+/**
+ * ✅ 공통 베이스
+ * @param {Env} _env
+ * @param {any} _argv
+ * @param {boolean} isProd
+ * @returns {WebpackConfig}
+ */
 const base = (_env, _argv, isProd) => ({
   entry: "./src/service/index.ts",
   resolve: {
@@ -34,8 +45,8 @@ const base = (_env, _argv, isProd) => ({
           {
             loader: "ts-loader",
             options: {
-              transpileOnly: false,
-              configFile: "tsconfig.build.json",
+              transpileOnly: true,
+              configFile: "tsconfig.lib.json",
             },
           },
         ],
@@ -114,6 +125,12 @@ const umd = (_env, _argv, isProd) => ({
   },
 });
 
+/**
+ *
+ * @param {*} env
+ * @param {{mode?: 'development' | 'production'}} argv
+ * @returns
+ */
 module.exports = (env = {}, argv = {}) => {
   console.log("argv", argv);
   const isProd = argv.mode === "production";
