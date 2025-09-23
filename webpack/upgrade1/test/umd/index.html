@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sdk개발(umd):webpack + react</title>
+  </head>
+  <body>
+    <div id="react-root">hello world</div>
+
+    <button id="test-sdk-print-control">PrintControl 테스트</button>
+
+    <!-- *NOTE: UMD 모듈 방식 테스트 -->
+    <script src="http://localhost:5174/index.umd.js"></script>
+    <script>
+      const button = document.getElementById("test-sdk-print-control");
+
+      button.addEventListener("click", () => {
+        console.log("다운로드 시작", window.mySDK);
+        new window.mySDK.PrintControl().toPrint("#react-root");
+      });
+    </script>
+  </body>
+</html>

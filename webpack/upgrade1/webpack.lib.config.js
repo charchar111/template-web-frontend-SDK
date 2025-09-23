@@ -114,14 +114,13 @@ const umd = (_env, _argv, isProd) => ({
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index.umd.js",
-    /**
-     *
-     */
     library: {
       name: "mySDK", // 전역 이름 고정
       type: "umd",
+      // export: "default", // default export를 window.mySDK로
       umdNamedDefine: true,
     },
+    // globalObject: "this", // node/browser 모두 안전
   },
 });
 
