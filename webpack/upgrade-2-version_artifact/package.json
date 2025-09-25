@@ -1,0 +1,59 @@
+{
+  "name": "template-web-frontend-sdk-webpack-typescript",
+  "version": "1.0.0",
+  "description": "this is a template for web frontend sdk with webpack and typescript",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "webpack serve --mode=development",
+    "build": "webpack --no-cache --config webpack.lib.config.js --mode=production && api-extractor run --local",
+    "prod:test:esm": "http-server ./test/esm -p 5173 -c-1 --cors ",
+    "prod:test:umd": "http-server ./test/umd -p 5173 -c-1 --cors ",
+    "prod:dist": "http-server ./dist -p 5174 -c-1 --cors",
+    "prod:all:esm": "concurrently \"npm run prod:test:esm\" \"npm run prod:dist\"",
+    "prod:all:umd": "concurrently \"npm run prod:test:umd\" \"npm run prod:dist\"",
+    "docs:typedoc": "typedoc --options typedoc.json",
+    "prod:doc:typedoc": "http-server ./docs/typedoc -p 5175 -c-1 --cors -a 0.0.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.28.3",
+    "core-js": "3.37",
+    "jspdf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@microsoft/api-extractor": "^7.52.11",
+    "@types/react": "^19.1.11",
+    "@types/react-dom": "^19.1.7",
+    "babel-loader": "^10.0.0",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-webpack-plugin": "^5.6.4",
+    "http-server": "^14.1.1",
+    "ts-loader": "^9.5.2",
+    "typedoc": "^0.28.13",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
