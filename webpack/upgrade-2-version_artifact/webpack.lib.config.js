@@ -45,7 +45,8 @@ const base = (_env, _argv, isProd) => ({
           {
             loader: "ts-loader",
             options: {
-              transpileOnly: true,
+              transpileOnly: false,
+              configFile: "tsconfig.lib.json",
             },
           },
         ],
