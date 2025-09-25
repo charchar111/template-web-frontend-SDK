@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["src/service/index.ts"],
+  "entryPoints": ["dist/index.d.ts"],
   "entryPointStrategy": "expand",
   "out": "docs/typedoc",
   "cleanOutputDir": true,
@@ -12,8 +12,8 @@
   "disableSources": true,
   "categorizeByGroup": false,
   "searchInComments": true,
-  "skipErrorChecking": true
-
+  "skipErrorChecking": true,
+  "plugin": ["typedoc-plugin-mdn-links"]
   // 타입 링크를 외부로 거는 경우(DOMException, HTMLElement, Promise)
   // "externalSymbolLinkMappings": {
   //   "typescript": {

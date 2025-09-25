@@ -7,7 +7,10 @@ export default function App() {
 
   return (
     <div>
-      Appasdsa
+      <div>{count}</div>
+      <button onClick={() => setCount((prev) => String(prev + 1))}>
+        add count
+      </button>
       <Test2 />
     </div>
   );

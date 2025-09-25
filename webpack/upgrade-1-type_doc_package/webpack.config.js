@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = () => {
   const isDevelopment = process.env.NODE_ENV !== "production";
@@ -42,6 +43,9 @@ module.exports = () => {
       allowedHosts: "all", // 외부 도메인에서의 접속 허용
       compress: true, // gzip 압축
       host: "0.0.0.0", // ip를 이용해 외부 네트워크 인터페이스에서 접속 허용
+      client: {
+        overlay: false, // 브라우저에 웹팩 에러를 오버레이로 띄우는 기능. 비활성화
+      },
     },
 
     // eval-source-map: 번들 파일 내에 소스맵이 포함. 디버깅 시 원본 소스에 가까운 코드를 제공하나 무거우므로 성능이 느림 => 개발에 적합
@@ -75,6 +79,15 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: "public/index.html",
       }),
+      // 웹팩 개발 서버에서 타입스크립트 타입 검사를 별도의 프로세스에서 수행
+      // hmr 속도 향상 & 타입 에러 확인
+      ...(isDevelopment
+        ? [
+            new ForkTsCheckerWebpackPlugin({
+              typescript: { configFile: "tsconfig.json" },
+            }),
+          ]
+        : []),
     ],
   };
 };
