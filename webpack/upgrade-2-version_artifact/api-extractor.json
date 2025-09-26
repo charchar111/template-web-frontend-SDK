@@ -18,7 +18,7 @@
   // 문서 추출용 파일 생성
   "docModel": {
     "enabled": false,
-    "apiJsonFilePath": "<projectFolder>/docs/api-extract/<unscopedPackageName>.api.json"
+    "apiJsonFilePath": "<projectFolder>/docs/docs/api-extract/<unscopedPackageName>.api.json"
   },
 
   // dts 번들링(롤업)할 파일명

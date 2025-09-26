@@ -1,7 +1,8 @@
 {
-  "entryPoints": ["src/service/index.ts"],
+  // "entryPoints": ["src/service"],
+  "entryPoints": ["dist/index.d.ts"],
   "entryPointStrategy": "expand",
-  "out": "docs/typedoc",
+  "out": "subtree-docs/docs/typedoc",
   "cleanOutputDir": true,
   "readme": "none",
   "tsconfig": "./tsconfig.doc.json",

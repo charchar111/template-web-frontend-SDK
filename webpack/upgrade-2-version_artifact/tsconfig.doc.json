@@ -41,5 +41,5 @@
     // noEmitOnError: true
   },
 
-  "include": ["src/service"] // 검사를 하는 대상
+  "include": ["dist/index.d.ts"] // 검사를 하는 대상
 }

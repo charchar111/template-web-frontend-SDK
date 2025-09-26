@@ -1,14 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = () => {
   const isDevelopment = process.env.NODE_ENV !== "production";
+
   console.log(
     "NODE_ENV:",
     process.env.NODE_ENV,
     "isDevelopment",
     isDevelopment
   );
+
   return {
     entry: "./src/index.tsx", // 애플리케이션의 진입점. 번들링 시 가장 먼저 시작하는 파일
 
@@ -75,6 +78,16 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: "public/index.html",
       }),
+
+      // 웹팩 개발 서버에서 타입스크립트 타입 검사를 별도의 프로세스에서 수행
+      // hmr 속도 향상 & 타입 에러 확인
+      ...(isDevelopment
+        ? [
+            new ForkTsCheckerWebpackPlugin({
+              typescript: { configFile: "tsconfig.json" },
+            }),
+          ]
+        : []),
     ],
   };
 };
