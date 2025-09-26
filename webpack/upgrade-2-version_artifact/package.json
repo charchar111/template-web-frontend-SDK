@@ -1,6 +1,6 @@
 {
   "name": "template-web-frontend-sdk-webpack-typescript",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "this is a template for web frontend sdk with webpack and typescript",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
