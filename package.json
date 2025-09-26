@@ -1,0 +1,12 @@
+{
+  "name": "template-web-frontend-sdk",
+  "version": "1.0.0",
+  "description": "이 프로젝트는 웹프론트엔드 개발에서 SDK 개발을 위한 프로젝트 템플릿이다.",
+  "main": "index.js",
+  "scripts": {
+    "artifact:publish:gitlab": "npm run artifact:publish:gitlab --prefix webpack/upgrade-2-version_artifact"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

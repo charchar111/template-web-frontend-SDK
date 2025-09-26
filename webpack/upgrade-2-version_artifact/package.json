@@ -28,7 +28,10 @@
     "post-docs:typedoc": "node scripts/move-doc.js",
     "prod:doc:typedoc": "http-server ./docs/typedoc -p 5175 -c-1 --cors -a 0.0.0.0",
     "prepack": "rimraf dist/type-temp",
-    "postpack": "node scripts/move-pack.js"
+    "postpack": "node scripts/move-pack.js",
+    "artifact:publish:gitlab": "npm run artifact:publish:gitlab:package && npm run artifact:publish:gitlab:doc",
+    "artifact:publish:gitlab:package": "node ./scripts/deploy-subtree.js package",
+    "artifact:publish:gitlab:doc": "node ./scripts/deploy-subtree.js doc"
   },
   "keywords": [],
   "author": "",

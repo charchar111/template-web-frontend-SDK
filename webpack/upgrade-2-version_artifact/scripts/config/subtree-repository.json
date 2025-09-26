@@ -1,0 +1,10 @@
+{
+  "package": {
+    "prefix": "webpack/upgrade-2-version_artifact/subtree-package",
+    "branch": "webpack-package"
+  },
+  "doc": {
+    "prefix": "webpack/upgrade-2-version_artifact/subtree-docs",
+    "branch": "webpack-doc"
+  }
+}
