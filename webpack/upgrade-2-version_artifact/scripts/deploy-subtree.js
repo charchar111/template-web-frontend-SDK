@@ -1,13 +1,7 @@
 #!/usr/bin/env node
 /**
  * SDK 빌드 산출물을 git subtree로 분리 & 원격 push 하는 스크립트
- *
- * 사용법:
- *   node scripts/deploy-subtree.js <type>
- *
- * 예시:
- *   node scripts/deploy-subtree.js package
- *   node scripts/deploy-subtree.js doc
+ * (git 루트 자동 탐색 버전)
  */
 
 const { execSync } = require("child_process");
@@ -26,7 +20,7 @@ if (!fs.existsSync(CONFIG_FILE)) {
 }
 const CONFIG = JSON.parse(fs.readFileSync(CONFIG_FILE, "utf-8"));
 
-// 현재 폴더(package.json)에서 버전 읽기
+// 현재 디렉토리(package.json)에서 버전 읽기
 const PKG_FILE = path.resolve(__dirname, "..", "package.json");
 if (!fs.existsSync(PKG_FILE)) {
   console.error(`❌ package.json 파일을 찾을 수 없습니다: ${PKG_FILE}`);
@@ -35,8 +29,11 @@ if (!fs.existsSync(PKG_FILE)) {
 const PKG = JSON.parse(fs.readFileSync(PKG_FILE, "utf-8"));
 const version = PKG.version || "unknown";
 
-// Git 루트 경로 (항상 최상단에서 실행되도록)
-const GIT_ROOT = path.resolve(__dirname, "..", "..", "..");
+// Git 루트 동적 탐색
+function getGitRoot() {
+  return execSync("git rev-parse --show-toplevel").toString().trim();
+}
+const GIT_ROOT = getGitRoot();
 
 function run(cmd) {
   console.log("▶", cmd);
@@ -45,6 +42,10 @@ function run(cmd) {
 
 function main() {
   const [, , type] = process.argv;
+
+  console.log(
+    `🚀 서브트리 배포 시작 \n version: ${version} \n  type: ${type} \n `
+  );
 
   if (!type || !CONFIG[type]) {
     console.error(
@@ -55,10 +56,12 @@ function main() {
 
   const { prefix, branch } = CONFIG[type];
 
+  console.log(` - prefix: ${prefix}`);
+  console.log(` - branch: ${branch}`);
+
   try {
     // subtree split → branch 생성/갱신
     run(`git subtree split --prefix=${prefix} -b ${branch}`);
-
     // 원격 저장소 푸시
     run(`git push origin ${branch}:${branch}`);
 
