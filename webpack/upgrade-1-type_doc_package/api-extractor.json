@@ -31,7 +31,9 @@
     "publicTrimmedFilePath": "<projectFolder>/dist/index.d.ts"
   },
 
-  "tsdocMetadata": {},
+  "tsdocMetadata": {
+    "enabled": false
+  },
 
   "messages": {
     "compilerMessageReporting": {
