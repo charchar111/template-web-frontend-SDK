@@ -79,7 +79,7 @@ const esm = (_env, _argv, isProd) => ({
     path: path.resolve(__dirname, "dist"),
     filename: "index.esm.js",
     library: { type: "module" },
-    clean: true,
+    clean: false,
   },
 });
 
